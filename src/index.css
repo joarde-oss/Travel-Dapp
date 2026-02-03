@@ -626,9 +626,35 @@ h2 {
   font-size: 0.9rem;
 }
 
+.tx-box.tx-loading {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.tx-box.tx-loading .muted {
+  margin: 0;
+  grid-column: 2 / 3;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(212, 175, 55, 0.25);
+  border-top-color: var(--accent);
+  animation: spin 0.9s linear infinite;
+}
+
 .tx-title {
   font-weight: 600;
   color: var(--accent);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .combined-columns {

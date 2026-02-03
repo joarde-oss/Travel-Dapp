@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 import { trips } from '../data/trips'
 import { useI18n } from '../lib/i18n'
 import { parseEther } from 'viem'
-import { useAccount, useChainId, useSendTransaction } from 'wagmi'
+import { useAccount, useChainId, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
 import { sepolia } from 'wagmi/chains'
 
 export default function TripDetails() {
@@ -12,6 +12,10 @@ export default function TripDetails() {
   const { isConnected } = useAccount()
   const chainId = useChainId()
   const { sendTransaction, isPending, error, data: txHash } = useSendTransaction()
+  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
+    hash: txHash,
+    chainId: sepolia.id,
+  })
   const { id } = useParams<{ id: string }>()
   const trip = trips.find((item) => item.id === id)
 
@@ -187,7 +191,14 @@ export default function TripDetails() {
               >
                 {isPending ? t('buying') : t('buy')}
               </button>
-              {txHash ? (
+              {txHash && isConfirming ? (
+                <div className="tx-box tx-loading">
+                  <div className="spinner" aria-hidden="true" />
+                  <div className="tx-title">{t('txConfirming')}</div>
+                  <p className="muted">{t('txConfirmingBody')}</p>
+                </div>
+              ) : null}
+              {txHash && isConfirmed ? (
                 <div className="tx-box">
                   <div className="tx-title">{t('txReady')}</div>
                   <a

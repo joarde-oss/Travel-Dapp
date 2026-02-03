@@ -50,6 +50,8 @@ type TranslationKey =
   | 'wrongNetworkShort'
   | 'txReady'
   | 'txCta'
+  | 'txConfirming'
+  | 'txConfirmingBody'
   | 'footerTitle'
   | 'footerEmail'
   | 'footerPhone'
@@ -109,6 +111,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     wrongNetworkShort: 'Rete non supportata. Passa a Sepolia.',
     txReady: 'Transazione inviata.',
     txCta: 'Clicca qui per vedere la transazione',
+    txConfirming: 'Conferma in corso...',
+    txConfirmingBody: 'Attendi qualche secondo per la conferma della rete.',
     footerTitle: 'Viaggi sostenibili con pagamenti in ETH',
     footerEmail: 'Email',
     footerPhone: 'Telefono',
@@ -166,6 +170,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     wrongNetworkShort: 'Unsupported network. Switch to Sepolia.',
     txReady: 'Transaction submitted.',
     txCta: 'Click here to see the transaction',
+    txConfirming: 'Confirming transaction...',
+    txConfirmingBody: 'Please wait a few seconds for network confirmation.',
     footerTitle: 'Sustainable travel with ETH payments',
     footerEmail: 'Email',
     footerPhone: 'Phone',
