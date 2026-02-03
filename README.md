@@ -1,75 +1,46 @@
-# React + TypeScript + Vite
+# Travel Dapp (Gianni Travel Web3)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Premium travel marketplace with Web3 payments on Sepolia. The UI is built with a luxury black-and-gold theme, wallet connect in the top-right, and bilingual IT/EN content.
 
-Currently, two official plugins are available:
+## Features
+- Wallet connect with balance display (Sepolia).
+- Dynamic trips with premium descriptions (IT/EN).
+- Buy flow: opens MetaMask and sends ETH based on selected package.
+- Post-buy transaction box with Etherscan link.
+- Responsive layout with premium styling.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React 19 + TypeScript
+- Vite
+- Wagmi + Viem (wallet + transactions)
+- React Router
 
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Local Setup
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Build
+```bash
+npm run build
+npm run preview
 ```
+
+## Payment Flow
+The "Buy" button triggers a native MetaMask transaction to a fixed receiver address on Sepolia, with the amount set by the selected trip (priceEth in data).
+
+## Content and Localization
+- Languages: Italian and English (toggle in the header).
+- Trip content is stored in `src/data/trips.ts` with IT/EN fields.
+
+## Key Files
+- `src/pages/Home.tsx` - landing page and language toggle
+- `src/pages/TripDetails.tsx` - details + payment flow
+- `src/components/WalletConnect.tsx` - wallet connect and balance
+- `src/data/trips.ts` - trip data (IT/EN, prices, includes/excludes)
+- `src/lib/wagmi.ts` - wagmi config (Sepolia)
+
+## Notes
+- The app uses Sepolia by default.
+- If you change the receiver address, update it in `src/pages/TripDetails.tsx`.
