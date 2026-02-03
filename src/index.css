@@ -873,6 +873,23 @@ h2 {
     min-height: 240px;
   }
 
+  .trip-aside.card {
+    height: auto;
+  }
+
+  .trip-combined {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-combined .combined-payments {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .combined-columns {
+    grid-template-columns: 1fr;
+  }
+
   .site-footer {
     padding: 18px;
   }

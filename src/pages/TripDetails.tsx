@@ -63,6 +63,10 @@ export default function TripDetails() {
     setActiveImageIndex(0)
   }, [trip.id])
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [trip.id])
+
   const handlePrevImage = () => {
     setActiveImageIndex((current) => (current - 1 + totalImages) % totalImages)
   }
