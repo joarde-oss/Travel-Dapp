@@ -7,7 +7,7 @@ import { LanguageProvider } from './lib/i18n'
 export default function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/Travel-Dapp/">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/trip/:id" element={<TripDetails />} />
