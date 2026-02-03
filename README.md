@@ -44,3 +44,4 @@ The "Buy" button triggers a native MetaMask transaction to a fixed receiver addr
 ## Notes
 - The app uses Sepolia by default.
 - If you change the receiver address, update it in `src/pages/TripDetails.tsx`.
+redeploy trigger
