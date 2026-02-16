@@ -52,6 +52,9 @@ type TranslationKey =
   | 'txCta'
   | 'txConfirming'
   | 'txConfirmingBody'
+  | 'purchaseHistoryTitle'
+  | 'purchaseHistoryEmpty'
+  | 'purchaseHistoryCta'
   | 'footerTitle'
   | 'footerEmail'
   | 'footerPhone'
@@ -109,10 +112,13 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     buying: 'Pagamento...',
     connectToBuy: 'Connetti il wallet per acquistare.',
     wrongNetworkShort: 'Rete non supportata. Passa a Sepolia.',
-    txReady: 'Transazione inviata.',
-    txCta: 'Clicca qui per vedere la transazione',
+    txReady: 'Transazione confermata.',
+    txCta: 'Apri la transazione su Etherscan',
     txConfirming: 'Conferma in corso...',
     txConfirmingBody: 'Attendi qualche secondo per la conferma della rete.',
+    purchaseHistoryTitle: 'I miei acquisti',
+    purchaseHistoryEmpty: 'Nessun acquisto ancora con questo wallet.',
+    purchaseHistoryCta: 'Apri su Etherscan',
     footerTitle: 'Viaggi sostenibili con pagamenti in ETH',
     footerEmail: 'Email',
     footerPhone: 'Telefono',
@@ -168,10 +174,13 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     buying: 'Processing...',
     connectToBuy: 'Connect your wallet to purchase.',
     wrongNetworkShort: 'Unsupported network. Switch to Sepolia.',
-    txReady: 'Transaction submitted.',
-    txCta: 'Click here to see the transaction',
+    txReady: 'Transaction confirmed.',
+    txCta: 'Open the transaction on Etherscan',
     txConfirming: 'Confirming transaction...',
     txConfirmingBody: 'Please wait a few seconds for network confirmation.',
+    purchaseHistoryTitle: 'My purchases',
+    purchaseHistoryEmpty: 'No purchases yet with this wallet.',
+    purchaseHistoryCta: 'Open on Etherscan',
     footerTitle: 'Sustainable travel with ETH payments',
     footerEmail: 'Email',
     footerPhone: 'Phone',

@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Footer from '../components/Footer'
+import WalletConnect from '../components/WalletConnect'
 import { trips } from '../data/trips'
 import { useI18n } from '../lib/i18n'
 import { parseEther } from 'viem'
 import { useAccount, useChainId, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
 import { sepolia } from 'wagmi/chains'
+import { addPurchaseHistory } from '../lib/purchaseHistory'
 
 export default function TripDetails() {
-  const { language, t } = useI18n()
-  const { isConnected } = useAccount()
+  const { language, toggleLanguage, t } = useI18n()
+  const { address, isConnected } = useAccount()
   const chainId = useChainId()
   const { sendTransaction, isPending, error, data: txHash } = useSendTransaction()
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
@@ -71,6 +73,17 @@ export default function TripDetails() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
   }, [trip.id])
 
+  useEffect(() => {
+    if (!address || !txHash || !isConfirmed) return
+    addPurchaseHistory(address, {
+      txHash,
+      tripId: trip.id,
+      tripName: name,
+      priceEth: trip.priceEth,
+      timestamp: Date.now(),
+    })
+  }, [address, isConfirmed, name, trip.id, trip.priceEth, txHash])
+
   const handlePrevImage = () => {
     setActiveImageIndex((current) => (current - 1 + totalImages) % totalImages)
   }
@@ -89,7 +102,21 @@ export default function TripDetails() {
   return (
     <div className="page trip-page with-fixed-footer">
       <header className="hero">
-        <p className="eyebrow">Gianni Travel • Web3</p>
+        <div className="hero-top">
+          <p className="eyebrow">Gianni Travel • Web3</p>
+          <div className="hero-actions">
+            <WalletConnect variant="compact" />
+            <button
+              type="button"
+              className="lang-toggle"
+              onClick={toggleLanguage}
+              aria-label={t('langToggle')}
+            >
+              <span className={language === 'it' ? 'active' : ''}>{t('langIt')}</span>
+              <span className={language === 'en' ? 'active' : ''}>{t('langEn')}</span>
+            </button>
+          </div>
+        </div>
         <h1>{name}</h1>
         <p className="hero-subtitle">{location}</p>
       </header>
@@ -178,6 +205,7 @@ export default function TripDetails() {
           <aside className="trip-aside card trip-combined">
             <div className="combined-block combined-payments">
               <h2>{t('quickDetails')}</h2>
+              <WalletConnect />
               <div className="trip-price">
                 <span className="label">{t('price')}</span>
                 <span className="value">{trip.priceEth} ETH</span>

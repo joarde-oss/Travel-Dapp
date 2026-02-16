@@ -1,5 +1,6 @@
 import Footer from '../components/Footer'
 import ProductGallery from '../components/ProductGallery'
+import PurchaseHistory from '../components/PurchaseHistory'
 import WalletConnect from '../components/WalletConnect'
 import { useI18n } from '../lib/i18n'
 
@@ -29,6 +30,8 @@ export default function Home() {
           {t('heroSubtitle')}
         </p>
       </header>
+
+      <PurchaseHistory />
 
       <section className="section">
         <h2>{t('galleryTitle')}</h2>

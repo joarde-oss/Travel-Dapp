@@ -411,6 +411,26 @@ h2 {
   background: rgba(212, 175, 55, 0.08);
 }
 
+.history-list {
+  display: grid;
+  gap: 12px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(10, 10, 10, 0.2);
+}
+
+.history-title {
+  font-weight: 600;
+}
+
 .row {
   display: flex;
   justify-content: space-between;
